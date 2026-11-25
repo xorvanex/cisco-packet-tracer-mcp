@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "cisco-packet-tracer": {
+      "command": "<RUTA_AL_PROYECTO>/.venv/Scripts/python.exe",
+      "args": [
+        "<RUTA_AL_PROYECTO>/src/server.py"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "PACKET_TRACER_OUTPUT_DIR": "<RUTA_AL_PROYECTO>/topologies_output"
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "project_name": "lab_router_on_a_stick",
+  "description": "Topología estándar con Router-on-a-Stick, Switch L2 2960 y 2 VLANs con PCs",
+  "devices": [
+    {
+      "id": "R1",
+      "model": "2911",
+      "type": "router",
+      "interfaces": [
+        {
+          "name": "GigabitEthernet0/0",
+          "description": "Enlace Troncal hacia SW1",
+          "ip_address": null,
+          "subnet_mask": null
+        }
+      ],
+      "subinterfaces": [
+        {
+          "name": "GigabitEthernet0/0.10",
+          "vlan_id": 10,
+          "ip_address": "192.168.10.1",
+          "subnet_mask": "255.255.255.0",
+          "description": "Gateway VLAN 10 Ventas"
+        },
+        {
+          "name": "GigabitEthernet0/0.20",
+          "vlan_id": 20,
+          "ip_address": "192.168.20.1",
+          "subnet_mask": "255.255.255.0",
+          "description": "Gateway VLAN 20 TI"
+        }
+      ]
+    },
+    {
+      "id": "SW1",
+      "model": "2960-24TT",
+      "type": "switch",
+      "vlans": [
+        {"id": 10, "name": "VENTAS"},
+        {"id": 20, "name": "TI"}
+      ],
+      "interfaces": [
+        {
+          "name": "GigabitEthernet0/1",
+          "mode": "trunk",
+          "description": "Troncal hacia R1 Gi0/0"
+        },
+        {
+          "name": "FastEthernet0/1",
+          "mode": "access",
+          "vlan_id": 10,
+          "description": "Acceso PC-Ventas-1"
+        },
+        {
+          "name": "FastEthernet0/2",
+          "mode": "access",
+          "vlan_id": 20,
+          "description": "Acceso PC-TI-1"
+        }
+      ]
+    },
+    {
+      "id": "PC_VENTAS_1",
+      "model": "PC-PT",
+      "type": "pc",
+      "ip_address": "192.168.10.10",
+      "subnet_mask": "255.255.255.0",
+      "default_gateway": "192.168.10.1"
+    },
+    {
+      "id": "PC_TI_1",
+      "model": "PC-PT",
+      "type": "pc",
+      "ip_address": "192.168.20.10",
+      "subnet_mask": "255.255.255.0",
+      "default_gateway": "192.168.20.1"
+    }
+  ],
+  "links": [
+    {
+      "from_device": "R1",
+      "from_port": "GigabitEthernet0/0",
+      "to_device": "SW1",
+      "to_port": "GigabitEthernet0/1",
+      "cable_type": "copper_straight"
+    },
+    {
+      "from_device": "SW1",
+      "from_port": "FastEthernet0/1",
+      "to_device": "PC_VENTAS_1",
+      "to_port": "FastEthernet0",
+      "cable_type": "copper_straight"
+    },
+    {
+      "from_device": "SW1",
+      "from_port": "FastEthernet0/2",
+      "to_device": "PC_TI_1",
+      "to_port": "FastEthernet0",
+      "cable_type": "copper_straight"
+    }
+  ]
+}
