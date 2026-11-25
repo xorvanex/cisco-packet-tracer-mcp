@@ -37,7 +37,7 @@ Asistente IA (razona sobre la topología y llama herramientas MCP vía stdio)
 ## 🛠️ Stack Tecnológico
 
 | Tecnología | Rol en el proyecto |
-|----|-- --|
+|---|---|
 | **Python 3.10+** | Lenguaje base del servidor y lógica de red |
 | **MCP (`stdio` / JSON-RPC 2.0)** | Comunicación estándar entre cliente IA y servidor |
 | **Pydantic v2** | Validación de esquemas de topología (`Device`, `Link`, `VLAN`, etc.) |
@@ -49,7 +49,6 @@ Asistente IA (razona sobre la topología y llama herramientas MCP vía stdio)
 ## 🚀 Instalación y Configuración
 
 ### Prerrequisitos
-
 - **Python 3.10** o superior.
 - **Cisco Packet Tracer** (v8.x o v9.x) para abrir los archivos `.pkt` generados.
 - Un cliente compatible con **MCP** (Claude Code, Claude Desktop, Cursor, Antigravity, etc.).
@@ -95,7 +94,7 @@ Usa como base la plantilla [docs/mcp_config_example.json](docs/mcp_config_exampl
 ## 🧰 Herramientas MCP Expuestas
 
 | Herramienta | Qué hace |
-|-------------|------ ---|
+|---|---|
 | `calculate_vlsm_subnets` | Calcula subredes IPv4 por VLSM (red, máscara, wildcard, rango usable, broadcast y gateway) ordenando de mayor a menor demanda. |
 | `audit_network_topology` | Audita un objeto `NetworkTopology` en busca de IPs duplicadas, gateways inexistentes, enlaces huérfanos y wildcards OSPF inválidas. |
 | `generate_cisco_ios_configs` | Genera bloques de configuración Cisco IOS para routers y switches (interfaces, subinterfaces 802.1Q, VLANs, DHCP, OSPF, RIPv2 y rutas estáticas). |
